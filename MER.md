@@ -8,9 +8,9 @@
 
  **Responsavel:** Representa os organizadores e responsáveis pelo evento
 
-- **Festa:** Representa o evento específico da Festa de 15 Anos da Rebeca.
+- **Festa:** Representa o evento específico.
 
-- **Aniversariante:** Representa a Rebeca.
+- **Aniversariante:** Representa o aniversariante.
 
 - **Convidado:** Representa cada pessoa individual cadastrada para comparecer à festa.
 
