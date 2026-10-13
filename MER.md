@@ -76,7 +76,7 @@
 
  `id_festa` (PK)
 
-`nome_evento` (Ex: "15 Anos da Rebeca")
+`nome_evento` 
 
 `data_hora`
 
@@ -102,7 +102,7 @@
 
 - `grupo_familiar` 
 
-- `eh_titular` (Booleano - indica o responsável pelo grupo familiar)
+- `eh_titular` 
 
 - `status_rsvp` (Pendente, Confirmado, Recusado)
 
