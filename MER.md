@@ -1,4 +1,4 @@
-# Modelo de Entidade e Relacionamento (MER) - 15 Anos da Rebeca
+# Modelo de Entidade e Relacionamento (MER) 
 
 
 
@@ -6,7 +6,7 @@
 
 
 
- **Responsavel:** Representa os pais da Rebeca (organizadores e responsáveis pelo evento).
+ **Responsavel:** Representa os organizadores e responsáveis pelo evento
 
 - **Festa:** Representa o evento específico da Festa de 15 Anos da Rebeca.
 
@@ -20,8 +20,6 @@
 
 
 
----
-
 
 
 ## 2. Relacionamentos e Cardinalidades
@@ -30,27 +28,27 @@
 
 - **[Responsavel] (1,1) <Organizar> (1,n) [Festa]**
 
-&#x20; -*Explicação:* Os Pais/Responsáveis organizam o evento da festa de 15 anos.
+&#x20; Os Pais/Responsáveis organizam o evento da festa 
 
 - **[Responsavel] (1,n) <Cadastrar> (1,1) [Aniversariante]**
 
-&#x20; - *Explicação:* Os Responsáveis cadastram a Aniversariante (Rebeca) no sistema.
+&#x20; Os Responsáveis cadastram a Aniversariante no sistema.
 
 - **[Festa] (1,1) <Gerar> (1,n) [Convite]**
 
-&#x20; - *Explicação:* A festa gera múltiplos Convites individuais para distribuição aos convidados.
+&#x20; A festa gera múltiplos Convites individuais para distribuição aos convidados.
 
 - **[Aniversariante] (1,1) <Convidar> (1,n) [Convidado]**
 
-&#x20; - \*Explicação:\* A Rebeca indica a sua lista de convidados para a festa.
+ &#x20; A aniversariante indica a sua lista de convidados para a festa.
 
 - **[Convidado] (1,1) <Possuir> (1,1) [Convite]**
 
-&#x20; - *Explicação:* Cada Convidado possui exatamente 1 Convite/QR Code exclusivo, e cada Convite pertence a apenas 1 Convidado.
+&#x20;  Cada Convidado possui exatamente 1 Convite/QR Code exclusivo, e cada Convite pertence a apenas 1 Convidado.
 
 - **[Convite] (1,1) <Validar> (0,1) \[Portaria]**
 
-&#x20; - *Explicação:* Cada Convite/QR Code pode ter no máximo 1 registro de entrada na Portaria, queimando o código após o uso.
+&#x20; Cada Convite/QR Code pode ter no máximo 1 registro de entrada na Portaria, queimando o código após o uso.
 
 
 
@@ -76,13 +74,13 @@
 
 ### Festa
 
-- `id_festa` (PK)
+ `id_festa` (PK)
 
-- `nome_evento` (Ex: "15 Anos da Rebeca")
+`nome_evento` (Ex: "15 Anos da Rebeca")
 
-- `data_hora`
+`data_hora`
 
-- `local`
+`local`
 
 
 
@@ -90,7 +88,7 @@
 
 - `id_aniversariante` (PK)
 
-- `nome` (Ex: "Rebeca")
+- `nome` 
 
 - `data_nascimento`
 
@@ -98,11 +96,11 @@
 
 ### Convidado
 
-- `id_convidado` (PK)
+`id_convidado` (PK)
 
-- `nome_completo`
+`nome_completo`
 
-- `grupo_familiar` (Ex: "Família Silva" - agrupa os parentes no sistema)
+- `grupo_familiar` 
 
 - `eh_titular` (Booleano - indica o responsável pelo grupo familiar)
 
@@ -131,8 +129,6 @@
 - `operador_portaria`
 
 
-
----
 
 
 
