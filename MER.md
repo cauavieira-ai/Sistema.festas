@@ -1,135 +1,71 @@
-# Modelo de Entidade e Relacionamento (MER) 
-
-
+# Modelo de Entidade e Relacionamento (MER) - Gestão de Festas e Eventos
 
 ## 1. Entidades
 
-
-
- **Responsavel:** Representa os organizadores e responsáveis pelo evento
-
-- **Festa:** Representa o evento específico.
-
-- **Aniversariante:** Representa o aniversariante.
-
-- **Convidado:** Representa cada pessoa individual cadastrada para comparecer à festa.
-
-- **Convite:** Representa o passe/credencial digital (QR Code) individual gerado para cada convidado.
-
-- **Portaria:** Representa o registro de check-in realizado na entrada do evento.
-
-
-
-
-
-## 2. Relacionamentos e Cardinalidades
-
-
-
-- **[Responsavel] (1,1) <Organizar> (1,n) [Festa]**
-
-&#x20; Os Pais/Responsáveis organizam o evento da festa 
-
-- **[Responsavel] (1,n) <Cadastrar> (1,1) [Aniversariante]**
-
-&#x20; Os Responsáveis cadastram a Aniversariante no sistema.
-
-- **[Festa] (1,1) <Gerar> (1,n) [Convite]**
-
-&#x20; A festa gera múltiplos Convites individuais para distribuição aos convidados.
-
-- **[Aniversariante] (1,1) <Convidar> (1,n) [Convidado]**
-
- &#x20; A aniversariante indica a sua lista de convidados para a festa.
-
-- **[Convidado] (1,1) <Possuir> (1,1) [Convite]**
-
-&#x20;  Cada Convidado possui exatamente 1 Convite/QR Code exclusivo, e cada Convite pertence a apenas 1 Convidado.
-
-- **[Convite] (1,1) <Validar> (0,1) \[Portaria]**
-
-&#x20; Cada Convite/QR Code pode ter no máximo 1 registro de entrada na Portaria, queimando o código após o uso.
-
-
+- **Organizador:** Representa a pessoa ou empresa responsável por criar, gerenciar e financiar o evento.
+- **Evento:** Representa a festa ou evento específico cadastrado no sistema.
+- **Convidado:** Representa cada pessoa individual (titular ou acompanhante) cadastrada para comparecer ao evento.
+- **Convite:** Representa o passe/credencial digital (QR Code) individual e exclusivo gerado para cada convidado.
+- **Portaria:** Representa o registro físico de check-in (validação do QR Code) realizado na entrada do evento.
 
 ---
 
+## 2. Relacionamentos e Cardinalidades
 
+- **[Organizador] (1,1) ------ (1,n) [Evento]**
+  Um Organizador pode criar/gerenciar um ou vários Eventos, mas cada Evento pertence obrigatoriamente a exatamente 1 Organizador.
 
-## 3. Sugestão de Atributos
+- **[Evento] (1,1) ------ (1,n) [Convidado]**
+  Um Evento possui uma lista com um ou vários Convidados cadastrados. Cada Convidado está associado a exatamente 1 Evento.
 
+- **[Evento] (1,1) ------ (1,n) [Convite]**
+  Um Evento gera múltiplos Convites individuais para distribuição aos convidados. Cada Convite pertence a exatamente 1 Evento.
 
+- **[Convidado] (1,1) ------ (1,1) [Convite]**
+  Cada Convidado possui exatamente 1 Convite/QR Code exclusivo, e cada Convite pertence a apenas 1 Convidado.
 
-### Responsavel
+- **[Convite] (1,1) ------ (0,1) [Portaria]**
+  Cada Convite pode ter no máximo 1 registro de entrada na Portaria (0 quando ainda não entrou, 1 quando realizou o check-in), invalidando o código após o primeiro uso.
 
-- `id_responsavel` (PK)
+---
 
+## 3. Atributos
+
+### Organizador
+- `id_organizador` (PK)
 - `nome`
-
 - `telefone`
-
 - `email`
 
-
-
-### Festa
-
- `id_festa` (PK)
-
-`nome_evento` 
-
-`data_hora`
-
-`local`
-
-
-
-### Aniversariante
-
-- `id_aniversariante` (PK)
-
-- `nome` 
-
-- `data_nascimento`
-
-
+### Evento
+- `id_evento` (PK)
+- `id_organizador` (FK)
+- `nome_evento`
+- `tipo_evento` (Ex: Aniversário, Casamento, Corporativo)
+- `data_hora`
+- `local`
+- `capacidade_maxima`
 
 ### Convidado
-
-`id_convidado` (PK)
-
-`nome_completo`
-
-- `grupo_familiar` 
-
-- `eh_titular` 
-
+- `id_convidado` (PK)
+- `id_evento` (FK)
+- `nome_completo`
+- `grupo_familiar` / `grupo_acompanhante`
+- `eh_titular` (Booleano: Sim/Não)
 - `status_rsvp` (Pendente, Confirmado, Recusado)
 
-
-
 ### Convite
-
 - `id_convite` (PK)
-
-- `codigo_qr` (Único para cada convidado)
-
 - `id_convidado` (FK - Vincula diretamente ao convidado)
-
+- `id_evento` (FK)
+- `codigo_qr` (Único para cada convidado)
 - `status_convite` (Ativo, Utilizado, Cancelado)
 
-
-
 ### Portaria
-
 - `id_entrada` (PK)
-
+- `id_convite` (FK - Vincula diretamente ao convite validado)
 - `data_hora_entrada`
-
 - `operador_portaria`
-
-
-
 
 
 ## 4. Diagrama Entidade e Relacionamento (DER)
